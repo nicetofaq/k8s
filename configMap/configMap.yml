@@ -1,0 +1,19 @@
+# https://kubernetes.io/docs/concepts/configuration/configmap/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: default
+data:
+  nginx.conf: |
+    server {
+      listen 80;
+      server_name my-nginx-server;
+      
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+      }
+    }
+---
+

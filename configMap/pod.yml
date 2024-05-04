@@ -1,0 +1,28 @@
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "nginx-pod"
+spec:
+  containers:
+  - name: nginx-pod
+    image: "nginx:latest"
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    ports:
+    - containerPort: 80
+      name: http
+    volumeMounts:
+    - name: nginx-config-volume
+      mountPath: /etc/nginx/conf.d
+  volumes:
+    - name: nginx-config-volume
+      configMap: 
+        name: nginx-config
+---
+  
